@@ -39,6 +39,9 @@
 \newtheorem{question}{Question}
 \newtheorem*{question*}{Question}
 
+\newtheorem{bigthm}{Theorem}
+\renewcommand{\thebigthm}{\Alph{bigthm}}
+
 
 \usepackage{color}
 \definecolor{verydarkblue}{rgb}{0,0,0.4}
@@ -66,6 +69,56 @@ citecolor=verydarkblue,urlcolor=verydarkblue
 
 \section{Introduction}
 
+Given an immersed surface $\Sigma$ in hyperbolic space with induced metric $g$ and shape operator $B$, the Gauss-Codazzi equations for $(g,B)$ relate the intrinsic curvature of $\Sigma$ to the geometry of hyperbolic space.
+Krasnov and Schlenker in \cite{Krasnov-Schlenker2008} showed that, under certain curvature restrictions, the image of the $\Sigma$ under the hyperbolic Gauss map to the sphere induces a pair of tensors $(\hat{g},\hat{B})$ on $\Sigma$ that satisfy a dual set of equations that they call the \emph{Gauss-Codazzi equations at infinity}. 
+The algebraic relation $(g,B) \to (\hat{g},\hat{B})$ is invertible and, independently, Bridgeman-Bromberg in \cite{Bridgeman-Bromberg2022} and Schlenker in \cite{Schlenker2017} showed that $(g,B)$ solves the Gauss-Codazzi equations if and only if $(\hat{g},\hat{B})$ solves this dual set of equations. 
+
+Here we generalize this work to an arbitrary dimension.
+We show that a pair of tensors $(g,B)$ on an $n$-dimensional manifold $M$ that satisfy the Gauss-Codazzi equations induce, via the same transformation as in 2-dimensions, a pair $(\hat{g},\hat{B})$ on $M$ that solve the dual set of equations
+\[
+\left\{
+\begin{aligned}
+Rm(\hat{g}) &= -\frac{1}{2}\hat{g}\wtimes \hat{\two} \\
+d^{\hat{\nabla}}\hat{B} &= 0,
+\end{aligned}
+\right.
+\]
+where $\hat{\two}(X,Y) = \hat{g}(\hat{B}X,Y)$ and the Kulkarni-Nomizu product $h\wtimes k$ is defined in the next section.
+When $n=2$ these equations reduce to those of Krasnov and Schlenker from \cite{Krasnov-Schlenker2008}. 
+We similarly show that $(g,B)$ solves the Gauss-Codazzi equations if and only if $(\hat{g},\hat{B})$ solves the Gauss-Codazzi equations at infinity (Theorem \ref{DualEquations}).
+
+
+Osgood and Stowe in \cite{Osgood-Stowe1992} introduced a traceless tensor $\mathrm{OS}(g_2,g_1)$ built from a pair of conformal metrics $g_2 = e^{2u}g_1$.
+In \cite{Bridgeman-Bromberg2022}, Bridgeman and Bromberg show that when $n = 2$ a choice of complex projective structure on $\Sigma$ compatible with $\hat{g}$ produces a unique solution to the Gauss-Codazzi equations at infinity in the form of $\hat{\two} = 2\mathrm{OS}(\hat{g}) - K(\hat{g})\hat{g}$, where $\mathrm{OS}(\hat{g})$ is the Osgood-Stowe tensor of $\hat{g}$ relative to the flat metric of any projective chart, and where $K(g)$ is the Gaussian curvature of a metric $g$.
+
+The situation is slightly different when $n > 2$.
+In our setting, the notion of a complex projective structure generalizes to that of a locally conformally flat structure. 
+For our purposes, a metric $g$ is locally conformally flat if there is an atlas of charts to $\R^n$ on which $g$ is conformal to the Euclidean metric of the chart.
+We prove the following.
+
+\begin{bigthm}
+Let $\hat{g}$ be a locally conformally flat metric on an $n$-dimensional manifold $M$ for $n \geq 3$.
+The unique solution $\hat{B}$ to the Gauss-Codazzi equations at infinity is
+\[
+\hat{g}\hat{B} = 2\mathrm{OS}(\hat{g}) + \frac{S(\hat{g})}{n-n^2}\hat{g},
+\]
+for $S(g)$ the scalar curvature of a metric $g$.
+\end{bigthm}
+\noindent
+As $S = 2K$ when $n=2$, this theorem generalizes the solutions found Bridgeman and Bromberg to any dimenion.
+
+As an application of our work, we use this duality to prove a classical theorem concerning the equivalence of a metric being locally conformally flat with the vanishing of certain tensors constructed from the metric.
+As such, this work provides an alternative proof of this Schouten-Weyl theorem from a hyperbolic-geometric perspective.
+
+\begin{bigthm}[Schouten-Weyl]
+Let $M$ be a manifold of dimension $n \geq 3$.
+A metric $g$ on $M$ is locally conformally flat if and only if its Schouten tensor is Codazzi ($n = 3$) or its Weyl tensor vanishes ($n \geq 4$).
+\end{bigthm}
+\noindent
+The usual proofs of this require working with $n=3$ and $n\geq 4$ separately.
+Our proof relates the Schouten and Weyl tensors to the Gauss-Codazzi equations at infinity and the novelty is that we are able to prove all cases together at once. 
+
+
 \section{Preliminaries}
 
 
@@ -79,7 +132,7 @@ If $B:TM \to TM$ is a $(1,1)$-tensor, self-adjoint with respect to $g$, then $gB
 gB(X,Y) = g(BX,Y)
 \]
 for all vector fields $X$ and $Y$.
-Similarly, if $T$ is a symmetric 2-tensor, then the endomorphism field $g^{-1}T$ is defined by 
+Similarly, if $T$ is a symmetric 2-tensor, then the endomorphism field $g^{-1}T$ defined by 
 \[
 T(X,Y) = g( (g^{-1}T)X,Y)
 \]
@@ -90,32 +143,32 @@ The trace of such a $2$-tensor is the trace of the corresponding $(1,1)$-tensor
 \]
 
 The Levi-Civita connection $\nabla$ for $g$ is the unique torsion free connection on $TM$ compatible with $g$.
-The exterior covariant derivative $d^\nabla$ is the alternization of the connection.
+The exterior covariant derivative $d^\nabla$ is the alternization of this connection.
 For $B$ is an endomorphism, $d^\nabla B$ is defined by
 \begin{align*}
 d^\nabla B(X,Y) &= (\nabla_XB)Y - (\nabla_YB)X \\
-&= \nabla_X(BY)- \nabla_Y(BX) - B([X,Y]).
+&= \nabla_X(BY)- \nabla_Y(BX) - B([X,Y]),
 \end{align*}
-For a symmetric 2-tensor, it is 
+for vector fields $X$ and $Y$.
+For a symmetric 2-tensor the derivative is 
 \begin{align*}
 d^\nabla T(X,Y,Z)
 &= (\nabla_YT)(X,Z)- (\nabla_Z T)(X,Y) \\
 &= YT(X,Z) - T(\nabla_YX,Z) - T(X,\nabla_YZ) \\
 &\phantom{=} - YT(X,Z) + T(\nabla_ZX,Y) + T(X,\nabla_ZY).
 \end{align*}
-The two are related via $d^\nabla T(X,Y,Z) = g(X, d^\nabla(g^{-1}T)(Y,Z))$ so that one vanishes if and only if the other does.
+These two are related via $d^\nabla T(X,Y,Z) = g(X, d^\nabla(g^{-1}T)(Y,Z))$ so that one vanishes if and only if the other does.
 The curvature of $\nabla$ is 
 \[
 R^\nabla(X,Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X,Y]}Z
 \]
 and the full curvature tensor 
 \[
-Rm(X,Y,Z,W) = g(R^\nabla(X,Y)Z,W),
+Rm(X,Y,Z,W) = g(R^\nabla(X,Y)Z,W).
 \]
-for vector fields $X$,$Y$,$Z$ and $W$.
 The curvature tensor has several important symmetries.
 Given two symmetric 2-tensors $T$ and $S$, there is an operation that produces a 4-tensor with these same symmetries called the Kulkarni-Nomizu product of $T$ and $S$. 
-It is defined by
+It is defined as
 \begin{align*}
 T \wtimes S(X,Y,Z,W)
 &= T(X,W)S(Y,Z) + T(Y,Z)S(X,W) \\
@@ -123,9 +176,9 @@ T \wtimes S(X,Y,Z,W)
 \end{align*}
 and is a symmetric and bilinear product on symmetric 2-tensors.
 Now suppose $g$ is a Riemannian metric and $T$ a symmetric 2-tensor.
-The trace of their Kulkarni-Nomizu product is computed in terms of $T$ and its trace:
+The trace of their Kulkarni-Nomizu product is computed in terms of $T$ and its trace
 \[
-tr_g( g \wtimes T) = (n-2)T + \tr_g(T)g.
+\tr_g( g \wtimes T) = (n-2)T + \tr_g(T)g.
 \]
 The metric $g$ will have constant sectional curvature $K$ if and only if its curvature tensor is of the form 
 \[
@@ -139,7 +192,7 @@ A connection $\nabla$ on $TM$ lets us split the double tangent bundle into a hor
 Here the vertical bundle $V$ is canonically defined as $V = \ker d\pi$ while the horizontal bundle $H$ depends on the connection.
 It consists of all tangent vectors to curves $(\gamma(t),X(t))$ in $TM$ for which $D_tX = 0$, where $D_t = \gamma^*\nabla$.
 
-In fact, with respect to the splitting, if $\alpha(t) = (\gamma(t),X(t))$ is a path in $TM$ for a vector field $V$ along $\gamma$ then $\alpha'(t) = (\gamma'(t),D_tX) \in H \oplus V$.
+In fact, with respect to the splitting, if $\alpha(t) = (\gamma(t),X(t))$ is a path in $TM$ for a vector field $X$ along $\gamma$ then $\alpha'(t) = (\gamma'(t),D_tX) \in H \oplus V$.
 Now suppose $f:\Sigma \to M$ is a smooth map and that $F: \Sigma \to TM$ is given by $F(x) = (f(x),V(x))$ for some vector field $V \in \Gamma(f^*TM)$ along $f$.
 Then the derivative of $F$ is $dF_x(u) = (df_x(u), (f^*\nabla)_u V)$.
 If $M$ carries a Riemannian metric with compatible connection, when $V = N$ is a unit normal vector field along $f$ we call $F = (f,N)$ a unit normal lift of $f$, and the Weingarten equation says $(f^*\nabla)_uN = -df(Bu)$ so that 
@@ -162,7 +215,7 @@ For $p$ a point in hyperbolic space and $v$ a unit vector tangent at $p$ the geo
 \mathcal{G}^t(p,v) = \cosh(t)p + \sinh(t)v.
 \]
 The derivative of the geodesic flow is a map $d(\mathcal{G}^t) : T(U\H^n) \to T\H^n$.
-We can compute it as follows
+We can compute it as follows.
 
 \begin{lem}
 \label{DerGeo}
@@ -230,7 +283,7 @@ A parallel family of hypersurfaces is obtained by flowing $M$ in its normal dire
 Given $f$ and $N$ one can form $F = (f ,-N)$ the unit normal lift $M \to U\H^{n+1}$.
 If one then follows this with the geodesic flow (projected down to $\H^{n+1}$) then we get the desired parallel surfaces.
 
-To actually compute things, we work in the hyperboloid model of $\H^{n+1}$,  in which the geodesic flow has a simple expression given above.
+To actually compute things, we work in the hyperboloid model of $\H^{n+1}$,  in which the geodesic flow has the clean expression given above.
 
 \begin{lem}
 Let $f^t: M \to \H^{n+1}$ be defined by $f^t = \mathcal{G}^t \circ F$, then $f^t$ is an immersion provided none of the eigenvalues of $B$ are equal to $-\coth(t)$ and the induced metric is given by 
@@ -282,7 +335,7 @@ The induced metrics are asymptotic to $\hat{g}$ in the sense that their conforma
 Following (refs) we refer to $\hat{g}$ as the metric at infinity.
 This name is mostly accurate in the following sense. 
 If $\mathcal{G}: U\H^{n+1} \to S^n$ is the hyperbolic Gauss map $\mathcal{G} = \lim_{t \to \infty} \mathcal{G}^t$, then the composition $f_\infty = \mathcal{G} \circ F$ gives a
-surface in $S^n = \partial_\infty(\H^{n+1})$, which the surfaces $M_t$ can be shown to limit to (in a Euclidean topology). 
+surface in $S^n = \partial_\infty(\H^{n+1})$, to which the surfaces $M_t$ can be shown to limit (in a Euclidean topology). 
 If we pull back the round metric $\overset{\circ}{g}$ on the sphere by $f_\infty$ then we obtain a metric on $M$ that is conformal to $\hat{g}$. 
 
 \begin{lem}
@@ -323,7 +376,7 @@ as claimed.
 
 Looking again at the expansion of $g_t$ one makes the following definitions:
 \[
-\hat{\two} = g - \three, \quad \hat{B} = \hat{\two}^{-1}\hat{g,} \quad \hat{\three} = g - 2\two + \three.
+\hat{\two} = g - \three, \quad \hat{B} = \hat{g}^{-1}\hat{\two}, \quad \hat{\three} = g - 2\two + \three.
 \]
 In particular,
 \begin{equation}
@@ -357,10 +410,12 @@ where $\nabla^\H$ and $\nabla^g$ are the corresponding Levi-Civita connections o
 From $\two$, one has the shape operator $B = g^{-1}\two$ and sees that $(g,B)$ obey the Gauss-Codazzi equations
 \begin{equation}
 \label{GC} \tag{GC}
+\left\{
 \begin{aligned}
 Rm &= -\frac{1}{2}g \wtimes g + \frac{1}{2}\two \wtimes \two \\
 d^\nabla B &= 0.
 \end{aligned}
+\right.
 \end{equation}
 Because hyperbolic space has constant sectional curvature $-1$, these equations may be written as
 \begin{align*}
@@ -387,10 +442,12 @@ So, given two tensors $(g,B)$ solving the Gauss-Codazzi equations we obtain anot
 In the general $n$-dimensional setting they are 
 \begin{equation}
 \label{GCInf} \tag{$\widehat{\text{GC}}$}
+\left\{
 \begin{aligned}
 \hat{Rm} &= -\frac{1}{2} \hat{g} \wtimes \hat{\two} \\
 d^{\hat{\nabla}} \hat{B} &= 0.
 \end{aligned}
+\right.
 \end{equation}
 
 When $n = 2$ these equations reduce to those of (names) in (refs).
@@ -485,7 +542,7 @@ The transition functions of a conformally flat structure are conformal maps and 
 \end{proof}
 
 There is a tensor that detects whether a map is a M\"obius transformation. 
-Given two conformal metrics $g_2 = e^{2u}g_1$, Osgood and Stowe define in (ref) the symmetric 2-tensor $\mathrm{OS}(g_2,g_1)$ as the traceless part of $\mathrm{Hess}(u) - du^2$.
+Given two conformal metrics $g_2 = e^{2u}g_1$, Osgood and Stowe define in \cite{Osgood-Stowe1992} the symmetric 2-tensor $\mathrm{OS}(g_2,g_1)$ as the traceless part of $\mathrm{Hess}(u) - du^2$.
 That is, 
 \[
 \mathrm{OS}(g_2,g_1) = \mathrm{Hess}(u)  - du\otimes du - \frac{1}{n}\left( \Delta u - |\nabla u|^2\right)g_1,
@@ -504,7 +561,7 @@ It also detects M\"obius transformations in the following sense.
 If $f:U \to \R^n$ is a smooth map of a domain in $\R^n$ then for $\bar{g}$ the Euclidean metric, $\mathrm{OS}(f^*\bar{g},\bar{g}) = 0$ if and only if $f$ is a M\"obius transformation.
 
 These facts have the following consequence. 
-If $g$ is a locally conformally flat metric on $M$ and $\varphi: U \to \R^n$ is a chart for which $e^{2u}g = \varphi^*\bar{g}$, then $\mathrm{OS}(g, \varphi^*\bar{g})$ patches together to form a global tensor on $M$. 
+If $g$ is a locally conformally flat metric on $M$ and $\varphi: U \to \R^n$ is a chart for which $g = e^{2u}\varphi^*\bar{g}$, then $\mathrm{OS}(g, \varphi^*\bar{g})$ patches together to form a global tensor on $M$. 
 To see this, if $\psi: V \to \R^n$ is any other conformal chart overlapping with $\varphi$ then 
 \begin{align*}
 \mathrm{OS}(g ,\psi^*\bar{g}) 
@@ -525,7 +582,7 @@ If $(\hat{g},\hat{B})$ are a pair of tensors that solve the Gauss-Codazzi equati
 Let $p$ be a point in $M$ and take a simply connected neighborhood $U$ around $p$.
 On $U$, the tensors $(\hat{g},\hat{B})$ solving \ref{GCInf} implies $(g,B)$, defined via \eqref{Tensors}, solve \ref{GC} and so we have an isometric immersion $f: U \to \H^{n+1}$.
 From this we get $f_\infty: U \to S^n$ via composing with the hyperbolic Gauss map and $\hat{g}$ is conformal to $f_\infty^*\overset{\circ}{g}$ by Lemma \ref{HypGaussMap}. 
-Since the round metric on the sphere is locally conformally flat, $f_\infty^*\overset{\circ}{g}$ is locally conformal to a flat metric and, after shrinking $U$ if necessary, $\hat{g}$ will be as well. 
+Since the round metric on the sphere is locally conformally flat, $f_\infty^*\overset{\circ}{g}$ is locally conformal to a flat metric and, after shrinking $U$ if necessary, $\left.\hat{g}\right|_{U}$ will be as well. 
 %\[
 %\frac{1}{\left< f+N, e_{n+2} \right>} \hat{g} = (f_\infty)^*\overset{\circ}{g}
 %\]
@@ -561,7 +618,7 @@ d^{\hat{\nabla}}T(X,Y,Z)
 \end{align*}
 To simplify, we need how the connections for $\hat{g}$ and $g$ relate:
 \[
-\hat{\nabla}_UV = \nabla_UV + du(U)V + du(V)U - g(U,V)\nabla u
+\hat{\nabla}_UV = \nabla_UV + du(U)V + du(V)U - g(U,V)\nabla u,
 \]
 for vectors fields $U$ and $V$.
 Using this on each relevant term in the derivative leads to a good amount of cancellation, eventually resulting in 
@@ -692,7 +749,7 @@ and by \eqref{NormTerm} this is
 du^2\wtimes\bar{g} = \frac{1}{2}|\bar{\nabla}u|^2\bar{g}\wtimes\bar{g}.
 \end{equation}
 
-For the first term in \eqref{OSu}, by Lemmas \ref{dRel} and \ref{Hess}, 
+For the remaining (first) term in \eqref{OSu}, by Lemmas \ref{dRel} and \ref{Hess}, 
 \begin{align*}
 d^{\hat{\nabla}}\mathrm{Hess} 
 &= d^{\bar{\nabla}}\mathrm{Hess} + \mathrm{Hess}\wtimes \bar{g} \\
@@ -713,7 +770,7 @@ Together we have
 \mathrm{Hess}\wtimes \bar{g}(\bar{\nabla}u,X,Y,Z) = -\frac{1}{2}d^{\bar{\nabla}}(|\bar{\nabla}u|^2\bar{g})(X,Y,Z) + d^{\bar{\nabla}}(du^2)(X,Y,Z).
 \end{equation}
 
-The derivatives of each term in \eqref{OSu} have been computed and substituting equations \eqref{NormTerm} and \eqref{HessProd} lets us cancel terms
+The derivatives of each term in \eqref{OSu} have now been computed and substituting equations \eqref{NormTerm} and \eqref{HessProd} lets us cancel terms
 \begin{align*}
 d^{\hat{\nabla}}\left(\mathrm{Hess}_{\bar{g}}(u) - 2 du^2 + |\bar{\nabla}u|^2 \bar{g} \right)
 &= -d^{\bar{\nabla}}(|\bar{\nabla}u|^2\bar{g}) + d^{\bar{\nabla}}(du^2) \\
@@ -746,7 +803,7 @@ Consequently, $\hat{B}$ defined in the theorem satisfies the Gauss equation at i
 To show that $\hat{B}$ is the unique solution, we show that \ref{GCInf} has a unique solution in the standard way.
 Assume $\hat{\two} = h$ and $\hat{\two} = k$ are two solutions to $\hat{Rm} = (-1/2)\hat{g}\wtimes\hat{\two}$.
 Then we can write $\hat{g}\wtimes (h-k) = 0$ and using the trace identity for the Kulkarni-Nomizu product we have $(n-2)(h-k) + \tr_{\hat{g}}(h-k)\hat{g} = 0$.
-Solve for $h-k$ to obtain $h-k = -\frac{1}{n-2}\tr_{\hat{g}}(h-k)\hat{g}$ and take another trace of sides.
+Solve for $h-k$ to obtain $h-k = -\frac{1}{n-2}\tr_{\hat{g}}(h-k)\hat{g}$ and take another trace of both sides.
 We have
 \[
 \tr_{\hat{g}}(h-k) = -\frac{n}{n-2}\tr_{\hat{g}}(h-k) \quad \implies \quad \tr_{\hat{g}}(h-k) = 0.
@@ -792,7 +849,7 @@ In particular, $(g,-2P)$ solves the Gauss-Codazzi equations at infinity if and o
 \end{lem}
 
 \begin{proof}
-The traceless Ricci tensor for a metric $g$ locally conformal to a flat metric $\bar{g}$ satisfies $Ric_0(g) = -(n-2)\mathrm{OS}(g,\bar{g})$.
+The traceless Ricci tensor $Ric_0(g)$ for a metric $g$ locally conformal to a flat metric $\bar{g}$ satisfies $Ric_0(g) = -(n-2)\mathrm{OS}(g,\bar{g})$.
 Substituting this into
 \[
 P(g) = \frac{1}{n-2}\left( Ric_0(g) + \frac{1}{n}S(g)g - \frac{S(g)}{2(n-1)} g \right)
@@ -821,14 +878,18 @@ Rm = -\frac{1}{2}g\wtimes (-2P) = 0 + g \wtimes P,
 \]
 which happens if and only if $d^\nabla P = 0$ and $W = 0$.
 
-When $n = 3$, for dimension reasons, the Weyl tensor of any metric will always vanish (see, for example, ref).
+When $n = 3$, for dimension reasons, the Weyl tensor of any metric will always vanish (see, for example, \cite{Lee2018}).
 So in dimension 3, the condition $d^\nabla P = 0$ is enough for the equivalence.
 When $n \geq 4$, the identity
 \[
 d^\nabla P = -\frac{1}{n-3}\tr_g(\nabla W)
 \]
-shows that $d^\nabla P$ will vanish if $W=0$, so this condition is enough for the equivalence when $n=4$.
+shows that $d^\nabla P$ will vanish if $W=0$, so this condition is enough for the equivalence when $n\geq4$.
 \end{proof}
+
+
+\bibliography{References}
+\bibliographystyle{alpha}
 
 
  
