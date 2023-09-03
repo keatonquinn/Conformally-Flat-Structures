@@ -43,6 +43,8 @@
 \renewcommand{\thebigthm}{\Alph{bigthm}}
 
 
+
+
 \usepackage{color}
 \definecolor{verydarkblue}{rgb}{0,0,0.4}
 \usepackage{hyperref}
@@ -63,6 +65,12 @@ citecolor=verydarkblue,urlcolor=verydarkblue
 \date{Last Revised: \today}
 
 \begin{abstract}
+A pair of tensors $(g,B)$ form the induced metric and shape operator of an immersion into hyperbolic space if and only if they satisfy the Gauss-Codazzi equations. 
+Such a pair of tensors induce a pair $(\hat{g},\hat{B})$ related to the ideal boundary of hyperbolic space.
+Krasnov and Schlenker, and Bridgeman and Bromberg show in the surface case that there is a duality between $(g,B)$ and $(\hat{g},\hat{B})$. 
+Moreover, $(g,B)$ solves the Gauss-Codazzi equations if and only if $(\hat{g},\hat{B})$ solve a corresponding set of equations. 
+We show a similar duality exists and identify these corresponding equations for an arbitrary dimension, as well as show there exists a unique solution for $\hat{B}$ provided  $\hat{g}$ is locally conformally flat. 
+As an application, we offer a proof of the Weyl-Schouten theorem concerning locally conformally flat metrics that factors through hyperbolic geometry. 
 \end{abstract}
 
 \maketitle
@@ -102,17 +110,16 @@ In \cite{Bridgeman-Bromberg2022}, Bridgeman and Bromberg show that, when $n = 2$
 
 The situation is slightly different when $n > 2$.
 In our setting, due to Liouville's theorem for conformal maps, the notion of a complex projective structure generalizes to that of a locally conformally flat structure. 
-For our purposes, a metric $g$ is locally conformally flat if there is an atlas of charts to $\R^n$ on which $g$ is conformal to the Euclidean metric of the chart.
+For our purposes, a metric $g$ is locally conformally flat if there is an atlas of charts to $\R^n$ on which $g$ is conformal to the Euclidean metric of the charts.
 We prove the following.
 
 \begin{bigthm}
 \label{bigthm1}
-Let $\hat{g}$ be a locally conformally flat metric on an $n$-dimensional manifold $M$ for $n \geq 3$.
-The unique solution $\hat{B}$ to the Gauss-Codazzi equations at infinity is
+A pair $(\hat{g},\hat{B})$ solves the Gauss-Codazzi equations at infinity if and only if the metric $\hat{g}$ is locally conformally flat and
 \[
-\hat{g}\hat{B} = 2\mathrm{OS}(\hat{g}) - \frac{S(\hat{g})}{n(n-1)}\hat{g},
+\hat{g} \hat{B} = 2\mathrm{OS}(\hat{g}) - \frac{S(\hat{g})}{n(n-1)}\hat{g},
 \]
-for $S(g)$ the scalar curvature of a metric $g$.
+where $\mathrm{OS}(\hat{g})$ is the Osgood-Stowe tensor of $\hat{g}$ with respect to the conformally flat structure induced by $\hat{g}$.
 \end{bigthm}
 \noindent
 As $S = 2K$ when $n=2$, this theorem generalizes the solutions found by Bridgeman and Bromberg to any dimenion.
@@ -127,6 +134,10 @@ A metric $g$ on $M$ is locally conformally flat if and only if its Schouten tens
 \noindent
 The usual proofs of this require working with $n=3$ and $n\geq 4$ separately.
 Our proof relates the Schouten and Weyl tensors to the Gauss-Codazzi equations at infinity and the novelty is that we are able to prove all cases together at once. 
+
+\subsection*{Acknowledgements}
+We thank Martin Bridgeman for our extensive conversations on this topic as well as for his helpful feedback on drafts of this paper.
+Thanks also go to Franco Vargas Pallete for helpful discussions and suggestions. 
 
 
 \section{Preliminaries}
